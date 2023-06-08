@@ -1,0 +1,36 @@
+[GLOBAL]
+pants_version = "2.15.1"
+colors = true
+backend_packages = [
+    "pants.backend.python",
+    "pants.backend.docker",
+    "pants.backend.python.lint.docformatter",
+    "pants.backend.python.lint.black",
+    "pants.backend.python.typecheck.mypy",
+]
+
+[source]
+root_patterns = ["/"]
+
+[docker]
+build_args = ["SHORT_SHA"]
+env_vars = ["DOCKER_CONFIG=%(env.HOME)s/.docker", "HOME", "USER", "PATH"]
+
+[python]
+interpreter_constraints = ["==3.9.*"]
+enable_resolves = true
+default_resolve = "mnist"
+
+[python.resolves]
+mnist = "mnist/mnist.lock"
+
+[test]
+output = "all"
+report = false
+use_coverage = true
+
+[coverage-py]
+global_report = true
+
+[pytest]
+args = ["-vv", "-s", "-W ignore::DeprecationWarning", "--no-header"]
