@@ -4,7 +4,6 @@ ENV PYTHONPATH .
 WORKDIR /app
 
 COPY mnist mnist
-COPY utils utils
 
 RUN pip3 install -r mnist/requirements.txt
 CMD ["python", "mnist/src/train.py"]

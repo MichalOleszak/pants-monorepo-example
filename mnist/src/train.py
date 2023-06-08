@@ -9,7 +9,6 @@ from torch.utils.data import DataLoader
 from mnist.src.data import MNISTDataset
 from mnist.src.model import MNISTModel
 from mnist.src.config import Config
-from utils.src import date_and_time
 
 
 if __name__ == "__main__":
@@ -18,20 +17,12 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     # Load the MNIST dataset
-    train_dataset = MNISTDataset(
-        root="data/", train=True, transform=transforms.ToTensor()
-    )
-    test_dataset = MNISTDataset(
-        root="data/", train=False, transform=transforms.ToTensor()
-    )
+    train_dataset = MNISTDataset(root="data/", train=True, transform=transforms.ToTensor())
+    test_dataset = MNISTDataset(root="data/", train=False, transform=transforms.ToTensor())
 
     # Create data loaders
-    train_loader = DataLoader(
-        dataset=train_dataset, batch_size=Config.batch_size, shuffle=True
-    )
-    test_loader = DataLoader(
-        dataset=test_dataset, batch_size=Config.batch_size, shuffle=False
-    )
+    train_loader = DataLoader(dataset=train_dataset, batch_size=Config.batch_size, shuffle=True)
+    test_loader = DataLoader(dataset=test_dataset, batch_size=Config.batch_size, shuffle=False)
 
     # Initialize the model
     model = MNISTModel().to(device)
@@ -56,9 +47,7 @@ if __name__ == "__main__":
             optimizer.step()
 
             if (batch_idx + 1) % 100 == 0:
-                print(
-                    f"Epoch {epoch+1}/{Config.num_epochs}, Step {batch_idx+1}/{len(train_loader)}, Loss: {loss.item()}"
-                )
+                print(f"Epoch {epoch+1}/{Config.num_epochs}, Step {batch_idx+1}/{len(train_loader)}, Loss: {loss.item()}")
 
     # Evaluation on the test set
     model.eval()
@@ -77,7 +66,3 @@ if __name__ == "__main__":
 
     accuracy = float(num_correct) / float(num_samples) * 100
     print(f"Accuracy on the test set: {accuracy:.2f}%")
-
-    # Save model
-    model_filename = Path(Config.models_dir, f"mnist_model_{date_and_time.now()}.pth")
-    torch.save(model.state_dict(), model_filename)

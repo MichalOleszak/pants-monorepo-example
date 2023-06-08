@@ -27,7 +27,7 @@ python_tests(
 
 docker_image(
     name="train_mnist",
-    dependencies=["mnsit:module_files"],
+    dependencies=["mnist:module_files"],
     registries=["docker.io"],
     repository="michaloleszak/mnist",
     image_tags=["latest", "{build_args.SHORT_SHA}"],
