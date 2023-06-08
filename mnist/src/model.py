@@ -11,8 +11,7 @@ class MNISTModel(nn.Module):
         self.fc2 = nn.Linear(128, 10)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """
-        Forward pass of the model.
+        """Forward pass of the model.
 
         Args:
             x (torch.Tensor): Input tensor.

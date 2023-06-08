@@ -35,6 +35,17 @@ global_report = true
 [pytest]
 args = ["-vv", "-s", "-W ignore::DeprecationWarning", "--no-header"]
 
+[mypy]
+args = [
+    "--ignore-missing-imports",
+    "--local-partial-types",
+    "--pretty",
+    "--color-output",
+    "--error-summary",
+    "--show-error-codes",
+    "--show-error-context",
+]
+
 # Do not send usage data to Pants developers
 [anonymous-telemetry]
 enabled = false
