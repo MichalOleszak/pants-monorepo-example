@@ -4,11 +4,6 @@ default_language_version:
 repos:
 - repo: local
   hooks:
-    - id: setup-pants
-      name: setup-pants
-      entry: bash -c "make setup-pants"
-      language: system
-      pass_filenames: false
       
     - id: check-build-files
       name: check-build-files
