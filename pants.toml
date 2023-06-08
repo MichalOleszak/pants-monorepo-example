@@ -34,3 +34,7 @@ global_report = true
 
 [pytest]
 args = ["-vv", "-s", "-W ignore::DeprecationWarning", "--no-header"]
+
+# Do not send usage data to Pants developers
+[anonymous-telemetry]
+enabled = false

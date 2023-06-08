@@ -6,6 +6,7 @@ files(
 python_sources(
     name="python",
     resolve="mnist",
+    sources=["**/*.py"],
 )
 
 python_requirements(
