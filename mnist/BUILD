@@ -3,26 +3,10 @@ files(
     sources=["**/*"],
 )
 
-python_sources(
-    name="python",
-    resolve="mnist",
-    sources=["**/*.py"],
-)
-
 python_requirements(
     name="reqs",
     source="requirements.txt",
     resolve="mnist",
-)
-
-python_tests(
-    name="tests",
-    resolve="mnist",
-    sources=["**/test_*.py"],
-    dependencies=[
-        "mnist:reqs",
-        "mnist:module_files",
-    ],
 )
 
 docker_image(
